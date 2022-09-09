@@ -1,1 +1,9 @@
 # syncbyte-py
+
+```bash
+DATABASE_URI
+REDIS_URI
+HOST_PATH
+CACHE_VOLUME
+LOGGER_PATH
+```

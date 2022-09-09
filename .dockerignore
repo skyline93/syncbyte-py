@@ -1,0 +1,9 @@
+venv
+logs
+*.egg-info
+.gitignore
+.env
+.vscode
+.git
+README.md
+.dockerignore
