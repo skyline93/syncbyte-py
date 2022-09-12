@@ -4,9 +4,9 @@ from datetime import datetime
 import boto3
 import botocore
 
-from app import db
-from app.db import get_session
-from app.constant import BackupJobStatus
+from syncbyte import db
+from syncbyte.db import get_session
+from syncbyte.constant import BackupJobStatus
 
 logger = logging.getLogger(__name__)
 

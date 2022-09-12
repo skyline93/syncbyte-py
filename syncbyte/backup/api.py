@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from app import db
-from app.db import get_session
-from app.constant import BackupJobStatus
-from app.celery import remote_backup_async, complete_backup_async
+from syncbyte import db
+from syncbyte.db import get_session
+from syncbyte.constant import BackupJobStatus
+from syncbyte.celery import remote_backup_async, complete_backup_async
 
 
 def gen_dataset_name(resource_name):

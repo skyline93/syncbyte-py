@@ -2,7 +2,7 @@ from typing import Optional, List
 
 from pydantic import BaseModel, Field
 
-from app.constant import StorageType
+from syncbyte.constant import StorageType
 
 
 class AddObjectStorageRequest(BaseModel):

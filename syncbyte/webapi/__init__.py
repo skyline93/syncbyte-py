@@ -1,6 +1,6 @@
 from fastapi import FastAPI, APIRouter
 
-from app.celery import test_async
+from syncbyte.celery import test_async
 from .api import router as api_router
 
 app = FastAPI(title="syncbyte")

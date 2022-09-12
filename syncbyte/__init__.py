@@ -1,8 +1,8 @@
 import os
 import logging
 
-from app.webapi import app as web_app
-from app.config import settings
+from syncbyte.webapi import app as web_app
+from syncbyte.config import settings
 
 logging.basicConfig(
     filename=os.path.join(settings.LOGGER_PATH, "app.log"),

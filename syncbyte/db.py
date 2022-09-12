@@ -5,7 +5,7 @@ import sqlalchemy.orm
 from sqlalchemy.ext.declarative import as_declarative
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
 
-from app.config import settings
+from syncbyte.config import settings
 
 DATABASE_URI = settings.DATABASE_URI
 

@@ -5,9 +5,9 @@ import subprocess
 
 import boto3
 
-from app.constant import DBType
-from app.exceptions import NotSupport, DumpFailed
-from app.config import settings
+from syncbyte.constant import DBType
+from syncbyte.exceptions import NotSupport, DumpFailed
+from syncbyte.config import settings
 
 logger = logging.getLogger(__name__)
 

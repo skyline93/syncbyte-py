@@ -1,8 +1,8 @@
 import click
 import uvicorn
 
-from app.scheduler import schedule
-from app.config import settings
+from syncbyte.scheduler import schedule
+from syncbyte.config import settings
 
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})

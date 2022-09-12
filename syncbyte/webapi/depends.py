@@ -1,4 +1,4 @@
-from app.db import get_session
+from syncbyte.db import get_session
 
 
 def get_db():

@@ -5,6 +5,7 @@ setup(
     version="0.1.0",
     python_requires=">=3.8",
     packages=find_packages(),
+    package_data={"syncbyte": ["alembic.ini"]},
     install_requires=[
         "uvicorn",
         "fastapi",
@@ -15,12 +16,21 @@ setup(
         "python-dotenv",
         "psycopg2-binary",
         "celery",
-        "boto3"
+        "boto3",
+        "eventlet",
     ],
     extras_require={
         "dev": [
             "black",
             "pytest",
+            "wheel",
+            "twine",
+            "pip-tools",
         ]
-    }
+    },
+    entry_points={
+        'console_scripts': [
+            'syncbyte = syncbyte.__main__:cli',
+        ]
+    },
 )

@@ -1,9 +1,9 @@
 import logging
 from time import sleep
 
-from app import db
-from app.db import get_session
-from app.backup.api import start_backup
+from syncbyte import db
+from syncbyte.db import get_session
+from syncbyte.backup.api import start_backup
 
 logger = logging.getLogger(__name__)
 

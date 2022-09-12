@@ -3,8 +3,8 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from app import db
-from app.backup.api import start_backup
+from syncbyte import db
+from syncbyte.backup.api import start_backup
 
 logger = logging.getLogger(__name__)
 
