@@ -26,4 +26,4 @@ def schedule():
         sleep_time = 5
         for i in range(1, int(wait_time / sleep_time)):
             sleep(sleep_time)
-            logger.info(f"waiting next backup {i * sleep_time}/{int(wait_time / sleep_time)}s")
+            logger.info(f"waiting next backup {i}/{int(wait_time / sleep_time)}")
