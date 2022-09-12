@@ -1,6 +1,7 @@
 import click
 import uvicorn
 
+from app.scheduler import schedule
 from app.config import settings
 
 
@@ -13,6 +14,11 @@ def cli():
 @click.option("--port", "-p", type=int, default=settings.UVICORN_PORT)
 def run(port):
     uvicorn.run(app="app:web_app", host="0.0.0.0", port=port)
+
+
+@cli.command()
+def run_schedule():
+    schedule()
 
 
 if __name__ == "__main__":

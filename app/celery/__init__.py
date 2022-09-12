@@ -4,7 +4,8 @@ from time import sleep
 from celery import Celery
 
 from app.config import CeleryConfig
-from app.backup import remote_backup, complete_backup
+from app.backup.remote import remote_backup
+from app.backup.local import complete_backup
 
 logger = logging.getLogger(__name__)
 
