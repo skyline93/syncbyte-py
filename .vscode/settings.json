@@ -2,4 +2,5 @@
     "python.defaultInterpreterPath": "venv/bin/python3",
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
+    "python.analysis.typeCheckingMode": "off",
 }

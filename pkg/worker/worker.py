@@ -5,7 +5,9 @@ logger = logging.getLogger(__name__)
 
 
 class Worker:
-    def __init__(self, concurrent=5):
+    def __init__(self, concurrent=64, logger=logger):
+        self.logger = logger
+
         self.concurrent = concurrent
         self.queue = asyncio.Queue(maxsize=1)
 
@@ -15,11 +17,13 @@ class Worker:
             await task.run()
 
     async def _run(self):
-        async with asyncio.TaskGroup() as tg:
-            for _ in range(0, self.concurrent):
-                tg.create_task(self._executor())
+        executors = []
+        for _ in range(0, self.concurrent):
+            executor = asyncio.create_task(self._executor())
+            executors.append(executor)
 
-            logger.debug(f"init worker, concurrent: {self.concurrent}")
+        self.logger.debug(f"init worker, concurrent: {self.concurrent}")
+        await asyncio.gather(*executors)
 
     async def run(self):
         await self._run()
