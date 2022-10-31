@@ -7,8 +7,10 @@ from sqlalchemy.engine import Result
 from sqlalchemy.orm import Session
 
 from pkg.worker import Worker, BaseTask
-from pkg import rds
 from core import db, policy
+from core.entity import Host
+from core.constant import HostType
+from core.scheduling import schedule_backup_job
 
 logging.basicConfig(
     filename="app.log",
@@ -75,6 +77,23 @@ async def sqlalchemy_main():
     )
 
 
+async def add_host():
+    await db.init(
+        "postgresql+asyncpg://syncbyte:lyp82nLF!?@192.168.1.131:5432/syncbytepy"
+    )
+
+    await Host.add("192.168.1.139", "VMDEV", HostType.BACKUP.value)
+
+
+async def schedule_job():
+    await db.init(
+        "postgresql+asyncpg://syncbyte:lyp82nLF!?@192.168.1.131:5432/syncbytepy"
+    )
+    await schedule_backup_job(1)
+
+
 if __name__ == "__main__":
     # asyncio.run(worker_main())
-    asyncio.run(sqlalchemy_main())
+    # asyncio.run(sqlalchemy_main())
+    # asyncio.run(add_host())
+    asyncio.run(schedule_job())

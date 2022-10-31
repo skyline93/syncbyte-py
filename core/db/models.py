@@ -1,7 +1,16 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
+from datetime import datetime
 
-from pkg.rds import Base, ModelBase
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
+
+Base = declarative_base()
+
+
+class ModelBase:
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, onupdate=datetime.now)
+    deleted = Column(Boolean, default=False)
 
 
 class Resource(ModelBase, Base):
@@ -103,6 +112,8 @@ class ScheduledJob(ModelBase, Base):
     end_time = Column(DateTime)
     status = Column(String(20))
     args = Column(String(1000))
+
+    host_id = Column(Integer)
 
     resource_id = Column(Integer)
     backup_set_id = Column(Integer)

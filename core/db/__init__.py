@@ -1,7 +1,7 @@
-from pkg import rds
 from . import models
+from .session import get_session, set_uri, create_all
 
 
 async def init(uri):
-    rds.set_uri(uri)
-    await rds.create_all()
+    set_uri(uri)
+    await create_all()

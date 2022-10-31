@@ -1,5 +1,6 @@
-from pkg.rds import get_session
-from core.db import models
+from sqlalchemy.future import select
+
+from core.db import models, get_session
 
 
 async def create_policy(
@@ -13,8 +14,12 @@ async def create_policy(
 ):
     session = get_session()
 
-    resource = session.get(models.Resource, {"name": resource_name})
-    # if 
+    result = await session.execute(
+        select(models.Resource).where(models.Resource.name == resource_name)
+    )
+    resource = result.first()
+    if resource is not None:
+        raise Exception("resource is exist already")
 
     resource = models.Resource(name=resource_name, resource_type=resource_type)
 
