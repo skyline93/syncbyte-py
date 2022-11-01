@@ -19,7 +19,7 @@ class Resource(Entity):
         result = await session.execute(
             select(models.Resource).where(models.Resource.id == self.id)
         )
-        resource = result.first()
+        resource = result.scalars().first()
 
         self.name = resource.name
         self.type = resource.resource_type
@@ -28,7 +28,7 @@ class Resource(Entity):
             result = await session.execute(
                 select(models.Database).where(models.Database.resource_id == self.id)
             )
-            database = result.first()
+            database = result.scalars().first()
 
             self.options = {
                 "db_type": database.db_type,

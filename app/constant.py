@@ -1,15 +1,17 @@
 from enum import Enum
 
 
-class DBType(str, Enum):
-    PostgreSQL = "postgresql"
+class ResourceType(str, Enum):
+    DATABASE = "database"
 
 
-class StorageType(str, Enum):
-    MinIO = "minio"
+class HostType(str, Enum):
+    BACKUP = "backup"
+    RESTORE = "restore"
 
 
-class BackupJobStatus(str, Enum):
-    Running = "running"
-    Successed = "successed"
-    Failed = "failed"
+class ScheduleJobStatus(str, Enum):
+    QUEUED = "queued"
+    RUNNING = "running"
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"

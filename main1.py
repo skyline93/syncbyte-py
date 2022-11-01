@@ -43,7 +43,7 @@ async def worker_main():
     await asyncio.gather(*tasks)
 
 
-async def sqlalchemy_main():
+async def backup_policy():
     await db.init(
         "postgresql+asyncpg://syncbyte:lyp82nLF!?@192.168.1.131:5432/syncbytepy"
     )
@@ -89,11 +89,13 @@ async def schedule_job():
     await db.init(
         "postgresql+asyncpg://syncbyte:lyp82nLF!?@192.168.1.131:5432/syncbytepy"
     )
-    await schedule_backup_job(1)
+    job_id = await schedule_backup_job(1)
+
+    print(job_id)
 
 
 if __name__ == "__main__":
     # asyncio.run(worker_main())
-    # asyncio.run(sqlalchemy_main())
-    # asyncio.run(add_host())
-    asyncio.run(schedule_job())
+    asyncio.run(add_host())
+    # asyncio.run(backup_policy())
+    # asyncio.run(schedule_job())

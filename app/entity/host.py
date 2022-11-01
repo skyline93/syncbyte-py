@@ -7,9 +7,6 @@ from .entity import Entity
 
 
 class Host(Entity):
-    def __init__(self, id, **kwargs):
-        super().__init__(id, **kwargs)
-
     async def _load_from_db(self, **kwargs):
         session = kwargs.get("session")
         if session is None:
@@ -18,7 +15,7 @@ class Host(Entity):
         result = await session.execute(
             select(models.Host).where(models.Host.id == self.id)
         )
-        m = result.first()
+        m = result.scalars().first()
 
         await session.commit()
 
@@ -43,7 +40,8 @@ class Host(Entity):
 
         await session.commit()
 
-        return cls(m.id)
+        self = cls(m.id)
+        return self
 
     @classmethod
     async def get_backup_host(cls, **kwargs):
@@ -55,7 +53,8 @@ class Host(Entity):
             select(models.Host).where(models.Host.host_type == HostType.BACKUP.value)
         )
 
-        m = result.first()
+        m = result.scalars().first()
         await session.commit()
 
-        return cls(m.id)
+        self = await cls(m.id)
+        return self

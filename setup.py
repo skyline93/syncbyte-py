@@ -3,24 +3,22 @@ from setuptools import setup, find_packages
 setup(
     name="syncbyte",
     version="0.1.0",
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     packages=find_packages(),
     install_requires=[
+        "click",
         "uvicorn",
         "fastapi",
         "pydantic",
-        "SQLALchemy",
-        "alembic",
-        "redis",
         "python-dotenv",
-        "psycopg2-binary",
-        "celery",
-        "boto3"
+        "SQLALchemy>=1.4.42",
+        "alembic",
+        "asyncpg",
     ],
     extras_require={
         "dev": [
             "black",
             "pytest",
         ]
-    }
+    },
 )

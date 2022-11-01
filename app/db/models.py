@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, JSON, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
@@ -111,7 +111,7 @@ class ScheduledJob(ModelBase, Base):
     start_time = Column(DateTime)
     end_time = Column(DateTime)
     status = Column(String(20))
-    args = Column(String(1000))
+    args = Column(JSON)
 
     host_id = Column(Integer)
 

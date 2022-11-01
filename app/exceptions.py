@@ -1,10 +1,6 @@
-class SyncByteException(Exception):
+class NotFound(Exception):
     pass
 
 
-class NotSupport(SyncByteException):
-    pass
-
-
-class DumpFailed(SyncByteException):
+class NotSupport(Exception):
     pass

@@ -11,7 +11,7 @@ async def schedule_backup_job(policy_id):
     result = await session.execute(
         select(models.BackupPolicy).where(models.BackupPolicy.id == policy_id)
     )
-    policy = result.first()
+    policy = result.scalars().first()
 
     if policy is None:
         raise Exception("backup policy not found")
@@ -30,3 +30,5 @@ async def schedule_backup_job(policy_id):
     session.add(job)
 
     await session.commit()
+
+    return job.id
